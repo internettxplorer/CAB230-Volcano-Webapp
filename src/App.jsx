@@ -1,11 +1,30 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Header from "./components/Header";
+
+import Home from "./pages/Home";
+import VolcanoList from "./pages/VolcanoList";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+
+import './App.css';
 
 function App() {
   return (
-    <div>
-      <h1> Hello World </h1>
-    </div>
-  )
+
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/list" element={<VolcanoList />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App
