@@ -1,3 +1,9 @@
+import DataGrid from "../components/DataGrid";
+
 export default function VolcanoList() {
-    return <h2>Volcano List</h2>;
+    return (
+        <div>
+            <DataGrid />
+        </div>
+    );
 }
