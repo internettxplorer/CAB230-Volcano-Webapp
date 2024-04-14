@@ -29,8 +29,8 @@ export default function DataGrid() {
     useEffect(() => {
         fetch("http://4.237.58.241:3000/volcanoes?country=Algeria")
             .then(response => response.json())
-            .then(data =>
-                    data.map(volcano => {
+            .then(response =>
+                    response.map(volcano => {
                         return {
                             name: volcano.name,
                             country: volcano.country,
@@ -38,7 +38,7 @@ export default function DataGrid() {
                         };
                     })
             )
-            .then(d => setRowData(d));
+            .then(data => setRowData(data));
     }, []);
 
     return (
