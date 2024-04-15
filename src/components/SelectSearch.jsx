@@ -13,8 +13,7 @@ import Select from "react-select";
  * */ 
 export default function SelectSearch(props) {
     const [ countries, setCountries ] = useState([]);
-    const [ selection, setSelection ] = useState('Ecuador');
-
+    const [ selection, setSelection ] = useState();
     useEffect(() => {
         fetch("http://4.237.58.241:3000/countries")
             .then(response => response.json())
@@ -35,7 +34,6 @@ export default function SelectSearch(props) {
         >
             <Select 
                 id="search-select"
-                value={selection}
                 onChange={(selected) => setSelection(selected.value)}
                 options={countries}
                 width={"200px"}
@@ -52,6 +50,6 @@ export default function SelectSearch(props) {
 }
 
 SelectSearch.propTypes = {
-    onSubmit: PropTypes.onSubmit
+    onSubmit: PropTypes.func
 }
 
