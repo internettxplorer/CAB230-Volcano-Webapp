@@ -1,23 +1,10 @@
 import { useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
-// CHANGE styling later
+// CHANGE data grid styling
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
 
 export default function DataGrid() {
-    // const table = {
-    //     columns: [
-    //       { headerName: "Make", field: "make" },
-    //       { headerName: "Model", field: "model" },
-    //       { headerName: "Price", field: "price" },
-    //     ],
-    //     rowData: [
-    //       { make: "Toyota", model: "Camry", price: 28000 },
-    //       { make: "Ford", model: "Focus", price: 16700 },
-    //       { make: "Hyundai", model: "Kona", price: 23500 },
-    //     ]
-    //   };
-
     const [rowData, setRowData] = useState([]);
 
     const columns = [
@@ -26,6 +13,8 @@ export default function DataGrid() {
         { headerName: "ID", field: "id"}
     ];
 
+    // ADD error catching
+    // CHANGE may be required later...
     useEffect(() => {
         fetch("http://4.237.58.241:3000/volcanoes?country=Algeria")
             .then(response => response.json())
