@@ -4,6 +4,7 @@ import "ag-grid-community/styles/ag-theme-balham.css";
 
 import { useState } from "react";
 
+// @ts-ignore
 import { useVolcanoTable } from "../api";
 import SelectSearch from "../components/SelectSearch";
 
