@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 
 /**
+ * @desc Querying API to populate volcano data table
  * 
  * @todo error catching
+ * @todo conditional query (accommodating population search)
  */
 
-function getVolcanoesByQuery(q) {
-    return fetch(`http://4.237.58.241:3000/volcanoes?country=${q}`)
+function getVolcanoesByQuery(query) {
+    return fetch(`http://4.237.58.241:3000/volcanoes?country=${query}`)
         .then(response => response.json())
         .then(response =>
                 response.map(volcano => {

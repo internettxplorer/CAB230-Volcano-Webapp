@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import Select from "react-select";
@@ -6,7 +5,7 @@ import Select from "react-select";
 /** 
  *  @desc Searchable dropdown list of countries using react-select
  * 
- * @todo search functionality
+ * @todo input validation
  * @todo error catching
  * @todo styling
  *  
@@ -14,6 +13,7 @@ import Select from "react-select";
 export default function SelectSearch(props) {
     const [ countries, setCountries ] = useState([]);
     const [ selection, setSelection ] = useState();
+
     useEffect(() => {
         fetch("http://4.237.58.241:3000/countries")
             .then(response => response.json())
@@ -33,10 +33,10 @@ export default function SelectSearch(props) {
             // style={{ display:"flex" }}
         >
             <Select 
-                id="search-select"
+                id="country-select"
                 onChange={(selected) => setSelection(selected.value)}
                 options={countries}
-                width={"200px"}
+                placeholder={"Start typing to search..."}
             />
             <button
                 id="search-button"

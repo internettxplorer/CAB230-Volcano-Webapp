@@ -8,7 +8,7 @@ import { useVolcanoTable } from "../api";
 import SelectSearch from "../components/SelectSearch";
 
 export default function VolcanoList() {
-    const [ search, setSearch ] = useState();
+    const [ search, setSearch ] = useState('Antarctica');
     const { rowData, loading, error } = useVolcanoTable(search);
 
     const columns = [
@@ -28,6 +28,7 @@ export default function VolcanoList() {
     return (
         <div>
             <SelectSearch onSubmit={setSearch} />
+
             <div
                 className="ag-theme-balham"
                 style={{ height: "300px", width: "600px" }}
