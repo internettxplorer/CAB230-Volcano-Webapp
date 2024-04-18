@@ -6,17 +6,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // @ts-ignore
-import { useVolcanoTable, getVolcanoById } from "../api";
+import { useVolcanoTable } from "../api";
 import SelectSearch from "../components/SelectSearch";
 
 export default function VolcanoList() {
-    const [ search, setSearch ] = useState('Antarctica');
+    const [ search, setSearch ] = useState();
     const { rowData, loading, error } = useVolcanoTable(search);
 
-    // const nav = useNavigate();
-
-    const [ rowId, setRowId ] = useState();
-    const [ volcanoData, setVolcanoData ] = useState();
+    const nav = useNavigate();
 
     const columns = [
         { headerName: "Name", field: "name"}, 
@@ -24,12 +21,6 @@ export default function VolcanoList() {
         { headerName: "Subregion", field: "subregion"} ,
         { headerName: "ID", field: "id"}
     ];
-
-    function handleRowClick(id) {
-        setRowId(id);
-        getVolcanoById(rowId); // cut out the rowId/setRowId middleman?
-        setVolcanoData()
-    }
 
     if (loading) {
         return <p>Loading...</p>;
@@ -52,8 +43,8 @@ export default function VolcanoList() {
                     rowData={rowData}
                     pagination={true}
                     paginationPageSize={7}
-                    onRowClicked={(row) => handleRowClick(row.data.id)}
-                    // onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
+                    // onRowClicked={(row) => handleRowClick(row.data.id)}
+                    onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
                 />
             </div>
         </div>

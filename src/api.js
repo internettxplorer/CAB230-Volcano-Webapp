@@ -32,30 +32,30 @@ function getVolcanoesByQuery(query) {
         })
 }
 
-export function getVolcanoById(id) {
-    return fetch(`http://4.237.58.241:3000/volcano/${id}`)
-        .then(response => {
-            if(!response.ok) {
-                throw new Error('Network response was not ok')
-            }
-            // return response.json()
-        })
-        .then(res =>
-                res.map(volcano => {
-                    return {
-                        name: volcano.name,
-                        country: volcano.country,
-                        region: volcano.region,
-                        subregion: volcano.subregion,
-                        last_eruption: volcano.last_eruption,
-                        summit: volcano.summit,
-                        elevation: volcano.elevation,
-                        latitude: volcano.latitude,
-                        longitude: volcano.longitude
-                    }
-                })
-        )
-}
+// export function getVolcanoById(id) {
+//     return fetch(`http://4.237.58.241:3000/volcano/${id}`)
+//         .then(response => {
+//             if(!response.ok) {
+//                 throw new Error('Network response was not ok')
+//             }
+//             // return response.json()
+//         })
+//         .then(res =>
+//                 res.map(volcano => {
+//                     return {
+//                         name: volcano.name,
+//                         country: volcano.country,
+//                         region: volcano.region,
+//                         subregion: volcano.subregion,
+//                         last_eruption: volcano.last_eruption,
+//                         summit: volcano.summit,
+//                         elevation: volcano.elevation,
+//                         latitude: volcano.latitude,
+//                         longitude: volcano.longitude
+//                     }
+//                 })
+//         )
+// }
 
 export function useVolcanoTable(search) {
     const [ rowData, setRowData ] = useState([]);
