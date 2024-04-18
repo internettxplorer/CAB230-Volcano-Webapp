@@ -3,6 +3,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-balham.css";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // @ts-ignore
 import { useVolcanoTable } from "../api";
@@ -12,11 +13,21 @@ export default function VolcanoList() {
     const [ search, setSearch ] = useState('Antarctica');
     const { rowData, loading, error } = useVolcanoTable(search);
 
+    const nav = useNavigate();
+    // const [ rowSelection, setRowSelection ] = useState();
+
     const columns = [
         { headerName: "Name", field: "name"}, 
         { headerName: "Country", field: "country"}, 
-        { headerName: "Subregion", field: "subregion"} 
+        { headerName: "Subregion", field: "subregion"} ,
+        { headerName: "ID", field: "id"}
     ];
+
+    // function handleRowClick(rowId) {
+    //     setRowSelection(rowId);
+
+    //     useVolcanoInfo(rowId);
+    // }
 
     if (loading) {
         return <p>Loading...</p>;
@@ -38,7 +49,9 @@ export default function VolcanoList() {
                     columnDefs={columns}
                     rowData={rowData}
                     pagination={true}
-                    paginationPageSize={10}
+                    paginationPageSize={7}
+                    // onRowClicked={(row) => handleRowClick(row.data.id)}
+                    onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
                 />
             </div>
         </div>

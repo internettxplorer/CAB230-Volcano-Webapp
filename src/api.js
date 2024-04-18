@@ -1,24 +1,45 @@
 import { useState, useEffect } from "react";
 
 /**
- * @desc Querying API to populate volcano data table
+ * @desc Query API to populate volcano data table
  * 
  * @todo error catching
  * @todo conditional query (accommodating population search)
  */
 
+// function getVolcanoesByQuery(query) {
+//     return fetch(`http://4.237.58.241:3000/volcanoes?country=${query}`)
+//         .then(response => response.json())
+//         .then(response =>
+//                 response.map(volcano => {
+//                     return {
+//                         name: volcano.name,
+//                         country: volcano.country,
+//                         subregion: volcano.subregion,
+//                         id: volcano.id
+//                     };
+//                 })
+//         )
+// }
+
 function getVolcanoesByQuery(query) {
     return fetch(`http://4.237.58.241:3000/volcanoes?country=${query}`)
-        .then(response => response.json())
-        .then(response =>
-                response.map(volcano => {
-                    return {
-                        name: volcano.name,
-                        country: volcano.country,
-                        subregion: volcano.subregion
-                    };
-                })
-        )
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+}
+
+export function getVolcanoById(id) {
+    return fetch(`http://4.237.58.241:3000/volcano/${id}`)
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.json();
+        })
 }
 
 export function useVolcanoTable(search) {
