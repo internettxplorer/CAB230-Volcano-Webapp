@@ -13,8 +13,26 @@ import { TextInput,
 
 export default function Login() {
 
+    const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
     const [ visible, { toggle }] = useDisclosure(false);
     const nav = useNavigate();
+
+    const handleLogin = () => {
+        const url = `${VOLCANO_API_URL}/user/login`;
+
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email: "", password: ""}),
+        })
+        .then((response) => {
+            localStorage.setItem("token", response.token);
+            console.log(response);
+        })
+        .catch((error) => console.log(error));
+    };
 
     const loginForm = useForm({
         mode: 'uncontrolled',
