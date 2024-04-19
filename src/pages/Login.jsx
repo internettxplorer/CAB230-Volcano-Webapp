@@ -8,6 +8,7 @@ import { TextInput,
     Box, 
     Stack, 
     Text, 
+    Space,
 } from "@mantine/core";
 
 export default function Login() {
@@ -28,11 +29,10 @@ export default function Login() {
         },
     });
 
-    
-
     return (
         <Box maw={340} mx="auto">
             <Text size="xl">Sign in</Text>
+            <Space h="sm" />
             <form onSubmit={loginForm.onSubmit(console.log)}>
                 <Stack>
                     <TextInput 
@@ -50,11 +50,14 @@ export default function Login() {
                     />
                 </Stack>
 
-                <Group justify="space-between" mt="md">
-                    <Button variant="outline" onClick={() => nav(`/register`)}>
+                <Group justify="end" mt="md">
+                    <Button type="submit">Continue</Button>
+                </Group>
+
+                <Group justify="center" mt="md">
+                    <Button variant="white" onClick={() => nav(`/register`)} >
                         Create an account
                     </Button>
-                    <Button type="submit">Submit</Button>
                 </Group>
             </form>
         </Box>

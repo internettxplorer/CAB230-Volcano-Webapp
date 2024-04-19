@@ -11,10 +11,7 @@ export default function Nav() {
                     <Link to="/list">Volcano List</Link>
                 </li>
                 <li>
-                    <Link to="/register">Register</Link>
-                </li>
-                <li>
-                    <Link to="/login">Login</Link>
+                    <Link to="/login">Sign in</Link>
                 </li>
             </ul>
         </nav>
