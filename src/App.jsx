@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Nav from './components/Nav';
+import { MantineProvider } from '@mantine/core';
 
+import Nav from './components/Nav';
 import Home from "./pages/Home";
 import Volcano from './pages/Volcano';
 import { volcanoLoader } from './components/volcanoLoader';
@@ -8,7 +9,9 @@ import VolcanoList from "./pages/VolcanoList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 
+import '@mantine/core/styles.css';
 import './App.css';
+import { theme } from "./styles/theme";
 
 function App() {
   /**
@@ -56,9 +59,12 @@ function App() {
   ]);
 
   return (
-    <div className="App">
+    <MantineProvider theme={theme}>
       <RouterProvider router={routes} />
-    </div>
+    </MantineProvider>
+    // <div className="App">
+    //   <RouterProvider router={routes} />
+    // </div>
   );
 }
 
