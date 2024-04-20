@@ -13,6 +13,7 @@ import { TextInput,
 
 export default function Register() {
     const [ visible, { toggle }] = useDisclosure(false);
+    // const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
     const nav = useNavigate();
 
     const registerForm = useForm({
@@ -24,9 +25,21 @@ export default function Register() {
 
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-            pwd: (value) => (/^\S+\S+$/.test(value) ? null : 'Invalid password'),
+            // pwd: (value) => (/^\S+\S+$/.test(value) ? null : 'Invalid password'), // CHANGE later
         },
     });
+
+    // const handleSubmit = () => {
+    //     const url = `${VOLCANO_API_URL}/user/register`;
+
+    //     return fetch(url, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: // pass email and password from form
+    //     })
+    // };
 
     return (
         <Box maw={340} mx="auto">
