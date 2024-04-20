@@ -43,10 +43,6 @@ export default function VolcanoList() {
                     rowData={rowData}
                     pagination={true}
                     paginationPageSize={7}
-                    // onRowClicked={() => {handleRowClick()}}
-                    // onRowClicked={(row) => nav(`/volcano/${row.data.id}`,
-                    //                 {state: {id: row.data.id}})}
-
                     onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
                 />
             </div>

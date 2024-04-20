@@ -12,46 +12,33 @@ import { TextInput,
 } from "@mantine/core";
 
 export default function Login() {
-
-    // const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
+    const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
+    
     const [ visible, { toggle }] = useDisclosure(false);
     const nav = useNavigate();
-
-    // const handleLogin = () => {
-    //     const url = `${VOLCANO_API_URL}/user/login`;
-
-    //     return fetch(url, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({ email: "", password: ""}),
-    //     })
-    //     .then((response) => {
-    //         localStorage.setItem("token", response.token);
-    //         console.log(response);
-    //     })
-    //     .catch((error) => console.log(error));
-    // };
 
     const loginForm = useForm({
         mode: 'uncontrolled',
         initialValues: {
-            email: '',
-            pwd: ''
+            email: "",
+            password: ""
         },
 
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-            pwd: (value) => (/^\S+\S+$/.test(value) ? null : 'Invalid password'),
+            password: (value) => (value.length < 1 ? 'Invalid password' : null)
         },
     });
 
+    const handleLogin = () => {
+        // const url = `${VOLCANO_API_URL}/user/login`;
+    };
+
     return (
         <Box maw={340} mx="auto">
-            <Text size="xl">Sign in</Text>
+            <Text size="xl">Log in</Text>
             <Space h="sm" />
-            <form onSubmit={loginForm.onSubmit(console.log)}>
+            <form onSubmit={loginForm.onSubmit(handleLogin)}>
                 <Stack>
                     <TextInput 
                         withAsterisk
@@ -71,13 +58,12 @@ export default function Login() {
                 <Group justify="end" mt="md">
                     <Button type="submit">Continue</Button>
                 </Group>
-
-                <Group justify="center" mt="md">
-                    <Button variant="white" onClick={() => nav(`/register`)} >
-                        Create an account
-                    </Button>
-                </Group>
             </form>
+            <Group justify="center" mt="md">
+                <Button variant="white" onClick={() => nav(`/register`)} >
+                    Create an account
+                </Button>
+            </Group>
         </Box>
     );
 }

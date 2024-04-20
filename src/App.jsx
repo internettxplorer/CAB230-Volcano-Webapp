@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 
 import Nav from './components/Nav';
 import Home from "./pages/Home";
@@ -60,6 +61,7 @@ function App() {
 
   return (
     <MantineProvider theme={theme}>
+      <Notifications />
       <RouterProvider router={routes} />
     </MantineProvider>
     // <div className="App">

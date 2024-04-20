@@ -1,7 +1,7 @@
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 
-import "../styles/Volcano.css";
+import "../styles/volcano.css";
 
 /**
  * @desc Displays information about a single volcano with accompanying map marker

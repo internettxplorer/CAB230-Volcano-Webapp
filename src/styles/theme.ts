@@ -1,4 +1,4 @@
-import { createTheme, DEFAULT_THEME, mergeMantineTheme, MantineColorsTuple } from "@mantine/core";
+import { createTheme, MantineColorsTuple, Notification } from "@mantine/core";
 
 const colours: MantineColorsTuple = [
     '#fff4e2',
@@ -18,6 +18,18 @@ export const theme = createTheme({
     defaultRadius: 'md',
     colors: {
         colours,
+    },
+    components: {
+        Notification: Notification.extend({
+            classNames: {
+                root: 'notif-root-class'
+            },
+            styles: {
+                root: {
+                    maxWidth: 400,
+                }
+            }
+        }),
     },
     
 });
