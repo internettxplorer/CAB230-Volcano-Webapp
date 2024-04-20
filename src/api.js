@@ -8,7 +8,9 @@ import { useState, useEffect } from "react";
  */
 
 function getVolcanoesByQuery(query) {
-    return fetch(`http://4.237.58.241:3000/volcanoes?country=${query}`)
+    const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
+    
+    return fetch(`${VOLCANO_API_URL}/volcanoes?country=${query}`)
         .then(response => {
             if(!response.ok) {
                 throw new Error('Network response was not ok');

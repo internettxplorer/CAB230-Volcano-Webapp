@@ -16,16 +16,11 @@ import { useNavigate } from "react-router-dom";
 // import errors from './styles/errors.module.css';
 
 /**
- * --. ACCOUNTS USED DURING TESTING .--
- * all passwords are '123'
- * golly@gosh.com
- * a@b.com
- * b@c.com
- * c@d.com
+ * @desc User registration form
  * 
- * DELETE LATER -- 
+ * @todo error handling for fetch request (add !response.ok)
+ * @todo review if localStorage for user details is necessary
  */
-
 export default function Register() {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
     const [ visible, { toggle }] = useDisclosure(false);
