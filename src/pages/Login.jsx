@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
@@ -11,9 +12,6 @@ import { TextInput,
     Space,
 } from "@mantine/core";
 
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-
 /**
  * @desc User login form
  * 
@@ -22,7 +20,6 @@ import { useState } from "react";
 export default function Login() {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
     const [ visible, { toggle }] = useDisclosure(false);
-    const [ loggedIn, setLoggedIn ] = useState(false);
     const nav = useNavigate();
 
     const loginForm = useForm({
@@ -49,50 +46,37 @@ export default function Login() {
             },
             body: JSON.stringify(user),
         })
-        .then(response => response.json())
-        .then((res) => {
-            if (res.error === true) {
-                if (res.message === "Incorrect email or password") {
-                    notifications.show({
-                        title: "Incorrect email or password",
-                        message: "Try again or create an account",
-                        color: "red",
-                        autoClose: 4500,
-                        withCloseButton: false,
-                        className: "notif-root-class",
-                    });
-                }
+        .then(response => {
+            response => response.json();
+            if (response.ok) {
+                localStorage.setItem("token", response.token);
+                console.log(response);
+                // setLoggedIn(true);
+
+                notifications.show({
+                    title: "Welcome back to Volcaneer!",
+                    message: "You are now logged in",
+                    color: "green",
+                    autoClose: 4500,
+                    withCloseButton: false,
+                    className: "notif-root-class",
+                });
             }
+            else if (!response.ok) {
+                notifications.show({
+                    title: "Incorrect email or password",
+                    message: "Try again or create an account",
+                    color: "red",
+                    autoClose: 4500,
+                    withCloseButton: false,
+                    className: "notif-root-class",
+                });
+            } 
             else {
-                localStorage.setItem("token", res.token);
-                console.log(res);
-                setLoggedIn(true);
-                
-                if (loggedIn) {
-                    notifications.show({
-                        title: "Welcome back to Volcaneer!",
-                        message: "You are now logged in",
-                        color: "green",
-                        autoClose: 4500,
-                        withCloseButton: false,
-                        className: "notif-root-class",
-                    });
-                }
+                throw new Error('Fetch unsuccessful'); // CHANGE to notification?
             }
         })
-        .catch((err) => console.log(err))
-        // .finally(() => {
-        //     if (loggedIn) {
-        //         notifications.show({
-        //             title: "Welcome back to Volcaneer!",
-        //             message: "You are now logged in",
-        //             color: "green",
-        //             autoClose: 4500,
-        //             withCloseButton: false,
-        //             className: "notif-root-class",
-        //         });
-        //     }
-        // })
+        .catch((err) => console.log(err)) // CHANGE to notification?
     };
 
     return (
