@@ -16,6 +16,7 @@ import { TextInput,
  * @desc User login form
  * 
  * @todo error handling for fetch request
+ * @todo refactor handleLogin into userAuth (pass user option via getValues())
  */
 export default function Login() {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
@@ -47,22 +48,8 @@ export default function Login() {
             body: JSON.stringify(user),
         })
         .then(response => {
-            response => response.json();
-            if (response.ok) {
-                localStorage.setItem("token", response.token);
-                console.log(response);
-                // setLoggedIn(true);
-
-                notifications.show({
-                    title: "Welcome back to Volcaneer!",
-                    message: "You are now logged in",
-                    color: "green",
-                    autoClose: 4500,
-                    withCloseButton: false,
-                    className: "notif-root-class",
-                });
-            }
-            else if (!response.ok) {
+            // Send notification if error received
+            if (!response.ok) {
                 notifications.show({
                     title: "Incorrect email or password",
                     message: "Try again or create an account",
@@ -71,9 +58,35 @@ export default function Login() {
                     withCloseButton: false,
                     className: "notif-root-class",
                 });
-            } 
+            }
+            return response.json();
+        })
+        .then(res => {
+            // Checks if a user is already logged in and sends notification if so
+            if (localStorage.getItem("token")) {
+                notifications.show({
+                    title: "Error",
+                    message: "User already logged in",
+                    color: "red",
+                    autoClose: 4500,
+                    withCloseButton: false,
+                    className: "notif-root-class",
+                });
+            }
             else {
-                throw new Error('Fetch unsuccessful'); // CHANGE to notification?
+                // If fetch successful (response with token), store token and send UI notification
+                if (res.token) {
+                    localStorage.setItem("token", res.token);
+                    console.log(res);
+                    notifications.show({
+                            title: "Welcome back to Volcaneer!",
+                            message: "You are now logged in",
+                            color: "green",
+                            autoClose: 4500,
+                            withCloseButton: false,
+                            className: "notif-root-class",
+                    });
+                }
             }
         })
         .catch((err) => console.log(err)) // CHANGE to notification?
