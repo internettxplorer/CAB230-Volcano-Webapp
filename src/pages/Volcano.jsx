@@ -1,7 +1,10 @@
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
+import BarGraph from "../components/BarGraph";
 
 import "../styles/volcano.css";
+
+// import { useState } from "react";
 
 /**
  * @desc Displays information about a single volcano with accompanying map marker
@@ -10,12 +13,40 @@ import "../styles/volcano.css";
  * @todo map styling, sizing, etc.
  */
 export default function Volcano() {
-    const navigate = useNavigate();
+    
     const volcano = useLoaderData();
+    const navigate = useNavigate();
+    // const [ loginState, setLoginState ] = useState(false);
+
     const MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
     const latitude = parseFloat(volcano.latitude);
     const longitude = parseFloat(volcano.longitude);
+
+    // function checkUserLoggedIn() {
+    //     if (localStorage.getItem("token")) {
+    //         setLoginState(true);
+    //     }
+    //     else if (!localStorage.getItem("token")) {
+    //         setLoginState(false);
+    //     }
+    //     else {
+    //         setLoginState(false);
+    //     }
+    // }
+
+    // const checkUserLoggedIn = () => {
+    //     if (localStorage.getItem("token")) {
+    //         return true;
+    //     }
+    //     else if (!localStorage.getItem("token")) {
+    //         return false;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
+
     return (
         <div>
             <div className="flex-container">
@@ -44,11 +75,19 @@ export default function Volcano() {
                     </APIProvider>
                 </div>
             </div>
+            <div>
+                <BarGraph isLoggedIn={true} />
+            </div>
 
             <button
                 onClick={() => navigate("/list")}
             >
             Back
+            </button>
+            <button
+                onClick={() => localStorage.removeItem("token")}
+            >
+                Logout - REMOVE ME LATER
             </button>
 
         </div>

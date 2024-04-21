@@ -1,9 +1,8 @@
 /** 
- * @desc Loads individual volcano info based on row click
+ * @desc Loads individual volcano info based on row click and user auth state
  * 
  * @todo error catching w/ UI potentially
 */
-
 export function volcanoLoader(id) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL; // CHANGE -- maybe refactor to global var
     const url = `${VOLCANO_API_URL}/volcano/${id}`;

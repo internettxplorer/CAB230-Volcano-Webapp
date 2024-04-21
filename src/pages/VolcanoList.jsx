@@ -4,9 +4,7 @@ import "ag-grid-community/styles/ag-theme-balham.css";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// @ts-ignore
-import { useVolcanoTable } from "../api";
+import { useVolcanoTable } from "../hooks/useVolcanoTable";
 import SelectSearch from "../components/SelectSearch";
 
 export default function VolcanoList() {

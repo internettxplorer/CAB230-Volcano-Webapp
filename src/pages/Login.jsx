@@ -67,21 +67,32 @@ export default function Login() {
                 localStorage.setItem("token", res.token);
                 console.log(res);
                 setLoggedIn(true);
+                
+                if (loggedIn) {
+                    notifications.show({
+                        title: "Welcome back to Volcaneer!",
+                        message: "You are now logged in",
+                        color: "green",
+                        autoClose: 4500,
+                        withCloseButton: false,
+                        className: "notif-root-class",
+                    });
+                }
             }
         })
         .catch((err) => console.log(err))
-        .finally(() => {
-            if (loggedIn) {
-                notifications.show({
-                    title: "Welcome back to Volcaneer!",
-                    message: "You are now logged in",
-                    color: "green",
-                    autoClose: 4500,
-                    withCloseButton: false,
-                    className: "notif-root-class",
-                });
-            }
-        })
+        // .finally(() => {
+        //     if (loggedIn) {
+        //         notifications.show({
+        //             title: "Welcome back to Volcaneer!",
+        //             message: "You are now logged in",
+        //             color: "green",
+        //             autoClose: 4500,
+        //             withCloseButton: false,
+        //             className: "notif-root-class",
+        //         });
+        //     }
+        // })
     };
 
     return (

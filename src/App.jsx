@@ -5,12 +5,13 @@ import { Notifications } from '@mantine/notifications';
 import Nav from './components/Nav';
 import Home from "./pages/Home";
 import Volcano from './pages/Volcano';
-import { volcanoLoader } from './components/volcanoLoader';
 import VolcanoList from "./pages/VolcanoList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import { volcanoLoader } from './helpers/volcanoLoader';
 
 import '@mantine/core/styles.css';
+import '@mantine/charts/styles.css';
 import './App.css';
 import { theme } from "./styles/theme";
 
@@ -60,7 +61,7 @@ function App() {
   ]);
 
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} defaultColorScheme='dark'>
       <Notifications />
       <RouterProvider router={routes} />
     </MantineProvider>
