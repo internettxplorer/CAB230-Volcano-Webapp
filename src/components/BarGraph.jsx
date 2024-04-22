@@ -2,7 +2,7 @@ import { Box, Text } from "@mantine/core";
 import { BarChart } from "@mantine/charts";
 import PropTypes from 'prop-types';
 import { useLoaderData } from "react-router-dom";
-
+import { checkLoggedIn } from "../helpers/UserAuth";
 
 /**
  * @desc Conditionally renders bar graph with population density info if user is logged in
@@ -11,6 +11,8 @@ import { useLoaderData } from "react-router-dom";
  */
 export default function BarGraph({ isLoggedIn }) { // put in separate file BarGraph.jsx
     const volcano = useLoaderData();
+
+    console.log(checkLoggedIn()); // DELETE
 
     if (isLoggedIn === true) {
         const populationData = [

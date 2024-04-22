@@ -1,4 +1,6 @@
-import { createTheme, MantineColorsTuple, Notification } from "@mantine/core";
+import { createTheme, MantineColorsTuple, Notification, NavLink } from "@mantine/core";
+import '../assets/Bilthers/Bilthers.css';
+import '../assets/KayakSans/KayakSans.css';
 
 const colours: MantineColorsTuple = [
     '#fff4e2',
@@ -14,8 +16,9 @@ const colours: MantineColorsTuple = [
   ];
 
 export const theme = createTheme({
-    fontFamily: 'Open Sans, sans-serif',
+    fontFamily: 'Kayak Sans Regular, sans-serif',
     defaultRadius: 'md',
+    // headings: { fontFamily: 'Bilthers, sans-serif'},
     colors: {
         colours,
     },
@@ -30,6 +33,19 @@ export const theme = createTheme({
                 }
             }
         }),
+
+        NavLink: NavLink.extend({
+            classNames: {
+                label: 'header-navlink-label'
+            },
+            styles: {
+                label: {
+                    fontSize: 30,
+                    color: '#aeaeae',
+                }
+            }
+        })
+
     },
     
 });

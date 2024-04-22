@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import Select from "react-select";
+// import {
+//     Select,
+//     Box,
+//     Container,
+//     Group,
+// } from "@mantine/core";
 
 /** 
  *  @desc Searchable dropdown list of countries using react-select
@@ -29,6 +35,19 @@ export default function SelectSearch(props) {
     }, []);
 
     return (
+        // <Container size="110rem" style={{ paddingTop: 20 }}>
+        //     <Group>
+        //         <Select
+        //             label="Country"
+        //             placeholder="Type or use the dropdown to search"
+        //             data={countries}
+        //             searchValue={selection}
+        //             onSearchChange={setSelection}
+        //             searchable
+        //         />
+        //     </Group>
+
+        // </Container>
         <div
             // style={{ display:"flex" }}
         >
