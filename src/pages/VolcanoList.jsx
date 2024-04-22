@@ -29,6 +29,7 @@ export default function VolcanoList() {
     }
 
     return (
+        // CHANGE to mantine format
         <div>
             <SelectSearch onSubmit={setSearch} />
 
