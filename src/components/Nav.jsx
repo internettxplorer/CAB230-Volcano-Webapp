@@ -10,7 +10,7 @@ import { Container,
 import volcano from "../assets/volcano.png";
 import chevron_right from "../assets/chevron_right.png";
 import login from "../assets/login.png";
-import logout from "../assets/logout.png";;
+import logout from "../assets/logout.png";
 
 /**
  * 
