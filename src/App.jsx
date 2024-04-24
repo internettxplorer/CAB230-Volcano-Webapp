@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { MantineProvider } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
@@ -20,10 +21,12 @@ function App() {
    * Some code for the browser router derived from the below stackoverflow link. 
    * https://stackoverflow.com/questions/74168742/how-to-template-jsx-with-createbrowserrouter
    */
+  const [loggedIn, setLoggedIn] = useState(false);
+  
   const Header = () => (
     <>
       <header>
-        <Nav />
+        <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </header>
       <Outlet />
     </>
@@ -54,7 +57,7 @@ function App() {
         },
         {
           path: "/login",
-          element: <Login />,
+          element: <Login setLoggedIn={setLoggedIn} />,
         },
       ],
     },

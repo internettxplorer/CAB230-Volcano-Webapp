@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
 import { notifications } from "@mantine/notifications";
@@ -17,8 +18,9 @@ import { TextInput,
  * 
  * @todo error handling for fetch request
  * @todo refactor handleLogin into userAuth (pass user option via getValues())
+ * @todo parent component passes login state to Login/Nav
  */
-export default function Login() {
+export default function Login({ setLoggedIn }) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
     const [ visible, { toggle }] = useDisclosure(false);
     const nav = useNavigate();
@@ -77,6 +79,7 @@ export default function Login() {
                 // If fetch successful (response with token), store token and send UI notification
                 if (res.token) {
                     localStorage.setItem("token", res.token);
+                    setLoggedIn(true); 
                     console.log(res);
                     notifications.show({
                             title: "Welcome back to Volcaneer!",
@@ -124,4 +127,8 @@ export default function Login() {
             </Group>
         </Box>
     );
+}
+
+Login.propTypes = {
+    setLoggedIn: PropTypes.func
 }
