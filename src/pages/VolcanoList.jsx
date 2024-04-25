@@ -27,15 +27,14 @@ export default function VolcanoList() {
     ];
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <p>Loading...</p>; // CHANGE to something nicer
     }
 
     if (error) {
-        return <p>Ya dun goofed: {error.message}</p>;
+        return <p>Ya dun goofed: {error.message}</p>; // CHANGE to notification
     }
 
     return (
-        // CHANGE to mantine format
         <Container size="110rem" style={{ paddingTop: 20, paddingBottom: 15 }}>
             <Title order={4} size="40" mt="10" style={{ fontFamily: "Kayak Sans Bold" }}>
                 Search the database
@@ -51,18 +50,6 @@ export default function VolcanoList() {
                         onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
                 />
             </Box>
-            {/* <div
-                className="ag-theme-material-dark"
-                style={{ height: "400px", width: "800px", marginLeft: "16px" }}
-            >
-                <AgGridReact
-                    columnDefs={columns}
-                    rowData={rowData}
-                    pagination={true}
-                    paginationPageSize={7}
-                    onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
-                />
-            </div> */}
         </Container>
     );
 }

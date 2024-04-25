@@ -13,8 +13,7 @@ import login from "../assets/login.png";
 import logout from "../assets/logout.png";
 
 /**
- * 
- * @todo global styles for page margins
+ * @desc Navigation links for header bar incl. home button, volcano list, sign-in button
  */
 export default function Nav({ loggedIn, setLoggedIn }) {
     const nav = useNavigate();
@@ -63,7 +62,6 @@ export default function Nav({ loggedIn, setLoggedIn }) {
     }
 
     return (
-        // header bar links/buttons
         <Container size="110rem" style={{paddingTop: 20}}>
             <Grid>
                 <Grid.Col span="content">

@@ -9,21 +9,16 @@ import {
     Title,
     Text,
     Space,
-    Button, // DELETE
+    Button,
 } from "@mantine/core";
 
 import BarGraph from "../components/BarGraph";
-import "../styles/volcano.css";
-
-// import { useState } from "react";
 
 /**
  * @desc Displays information about a single volcano with accompanying map marker
  * 
  * @todo error handling
  * @todo map styling, sizing, etc.
- * @todo refactor return into mantine format
- * @todo display pop graph dynamically based on user state
  */
 export default function Volcano({ loggedIn }) {
     const volcano = useLoaderData();
@@ -110,45 +105,6 @@ export default function Volcano({ loggedIn }) {
             </Grid>
 
         </Container>
-        // <div>
-        //     <div className="flex-container">
-        //         <div className="flex-child">
-        //             <h1>Volcano Information</h1>
-        //             <h2>{volcano.name}</h2>
-        //             <p>Country: {volcano.country}</p>
-        //             <p>Region: {volcano.region}</p>
-        //             <p>Subregion: {volcano.subregion}</p>
-        //             <p>Last Eruption: {volcano.last_eruption}</p>
-        //             <p>Summit: {volcano.summit}</p>
-        //             <p>Elevation: {volcano.elevation}</p>
-        //         </div>
-        //         <div className="flex-child">
-        //             <h1>Volcano Location</h1>
-                    // <APIProvider apiKey={MAPS_API_KEY}>
-                    //     <Map 
-                    //         zoom={4} 
-                    //         center={{lat: latitude, lng: longitude}}
-                    //         gestureHandling={'none'} // disable interaction with the map
-                    //         disableDefaultUI={true}
-                    //         style={{width: '50vw', height: '75vh'}}
-                    //     >
-                    //         <Marker position={{lat: latitude, lng: longitude}} />
-                    //     </Map>
-                    // </APIProvider>
-        //         </div>
-        //     </div>
-        //     <div>
-        //         <BarGraph isLoggedIn={true} />
-        //     </div>
-
-        //     <button
-        //         onClick={() => navigate("/list")}
-        //     >
-        //     Back
-        //     </button>
-
-        // </div>
-
     );
 }
 

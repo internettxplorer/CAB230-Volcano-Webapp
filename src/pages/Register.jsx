@@ -1,6 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { notifications } from "@mantine/notifications";
 import { TextInput, 
     PasswordInput, 
     Button, 
@@ -10,8 +10,13 @@ import { TextInput,
     Text, 
     Space,
 } from "@mantine/core";
+import {
+    accountExistsNotif,
+    accountCreatedNotif,
+    miscErrorNotif,
+} from "../helpers/notifications";
 
-import { useNavigate } from "react-router-dom";
+
 
 // import errors from './styles/errors.module.css';
 
@@ -33,7 +38,6 @@ export default function Register() {
             password: ""
         },
 
-        // ADD appropriate validations : check if user already exists, password requirements.
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
             password: (value) => (value.length < 1 ? 'Invalid password' : null)
@@ -42,7 +46,7 @@ export default function Register() {
 
     const handleRegister = () => {
         const url = `${VOLCANO_API_URL}/user/register`;
-        const user = registerForm.getValues(); // { email: "", password: "" }
+        const user = registerForm.getValues();
 
         return fetch(url, {
             method: "POST",
@@ -54,33 +58,11 @@ export default function Register() {
         .then((response) => response.json())
         .then((res) => {
             if (res.error === true) {
-                if (res.message === "User already exists") {
-                    notifications.show({
-                        title: "Account already exists",
-                        message: "Please log in",
-                        color: "red",
-                        autoClose: 4500,
-                        withCloseButton: false,
-                        className: "notif-root-class"
-                    });
-                }
+                if (res.message === "User already exists") { accountExistsNotif(); }
             }
+            else { accountCreatedNotif(); }
         })
-        .catch((err) => {console.error(err)})
-        .finally(() => { // CHANGE later -- is localStorage necessary for user details?
-            if (!localStorage.getItem(`${user.email}`)) {
-                localStorage.setItem(`${user.email}`, JSON.stringify(user));
-                console.log(JSON.parse(localStorage.getItem(`${user.email}`)));
-                notifications.show({
-                    title: "Account created",
-                    message: "You can log in now",
-                    color: "green",
-                    autoClose: 4500,
-                    withCloseButton: false,
-                    className: "notif-root-class"
-                })
-            }
-        })
+        .catch(() => { miscErrorNotif(); })
     };
 
     // Display login form and button to nav back to Login page

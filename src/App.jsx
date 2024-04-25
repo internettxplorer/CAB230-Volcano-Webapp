@@ -14,7 +14,7 @@ import { volcanoLoader } from './helpers/volcanoLoader';
 import '@mantine/core/styles.css';
 import '@mantine/charts/styles.css';
 import { theme } from "./styles/theme";
-import './App.css';
+// import './App.css';
 
 function App() {
   /**

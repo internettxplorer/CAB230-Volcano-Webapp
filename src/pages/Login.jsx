@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { notifications } from "@mantine/notifications";
 import { TextInput, 
     PasswordInput, 
     Button, 
@@ -13,12 +12,14 @@ import { TextInput,
     Space,
 } from "@mantine/core";
 
+import { 
+    wrongEmailNotif, 
+    alreadyLoggedInNotif, 
+    loginSuccessNotif, 
+    miscErrorNotif } from "../helpers/notifications";
+
 /**
  * @desc User login form
- * 
- * @todo error handling for fetch request
- * @todo refactor handleLogin into userAuth (pass user option via getValues())
- * @todo parent component passes login state to Login/Nav
  */
 export default function Login({ setLoggedIn }) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
@@ -40,7 +41,7 @@ export default function Login({ setLoggedIn }) {
 
     const handleLogin = () => {
         const url = `${VOLCANO_API_URL}/user/login`;
-        const user = loginForm.getValues();
+        const user = loginForm.getValues(); // get login & pwd form input
 
         return fetch(url, {
             method: "POST",
@@ -50,49 +51,22 @@ export default function Login({ setLoggedIn }) {
             body: JSON.stringify(user),
         })
         .then(response => {
-            // Send notification if error received
-            if (!response.ok) {
-                notifications.show({
-                    title: "Incorrect email or password",
-                    message: "Try again or create an account",
-                    color: "red",
-                    autoClose: 4500,
-                    withCloseButton: false,
-                    className: "notif-root-class",
-                });
-            }
+            if (!response.ok) { wrongEmailNotif(); } // Send notif for incorrect user details
             return response.json();
         })
         .then(res => {
-            // Checks if a user is already logged in and sends notification if so
-            if (localStorage.getItem("token")) {
-                notifications.show({
-                    title: "Error",
-                    message: "User already logged in",
-                    color: "red",
-                    autoClose: 4500,
-                    withCloseButton: false,
-                    className: "notif-root-class",
-                });
-            }
+            if (localStorage.getItem("token")) { alreadyLoggedInNotif(); } // Send notif if user already logged in
             else {
-                // If fetch successful (response with token), store token and send UI notification
+                // If fetch successful (response with token), store token and send login success notification
                 if (res.token) {
                     localStorage.setItem("token", res.token);
                     setLoggedIn(true); 
-                    console.log(res);
-                    notifications.show({
-                            title: "Welcome back to Volcaneer!",
-                            message: "You are now logged in",
-                            color: "green",
-                            autoClose: 4500,
-                            withCloseButton: false,
-                            className: "notif-root-class",
-                    });
+                    console.log(res); // DELETE
+                    loginSuccessNotif();
                 }
             }
         })
-        .catch((err) => console.log(err)) // CHANGE to notification?
+        .catch(() => { miscErrorNotif(); })
     };
 
     return (
