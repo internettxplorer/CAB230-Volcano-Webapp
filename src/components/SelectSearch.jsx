@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-// import Select from "react-select";
 import { useForm } from "@mantine/form";
 import {
     Select,
     Container,
-    Group,
+    Stack,
     Title,
     Space,
     Button,
@@ -19,7 +18,7 @@ import {
  * @todo styling
  *  
  * */ 
-export default function SelectSearch(props) {
+export default function SelectSearch({ selected, setSelection }) {
     const [ countries, setCountries ] = useState([]);
 
     // Fetch and re-format country list
@@ -49,47 +48,49 @@ export default function SelectSearch(props) {
         mode: 'uncontrolled',
         initialValues: {
             country: "",
-            populatedWithin: null
+            populatedWithin: "null"
         },
     
-        // ADD validate as needed
+        validate: {
+            country: (value) => (value === ("" || null) ? 'Country required' : null)
+        }
     });
 
     const handleSearch = () => {
-        const searchTerms = searchForm.getValues();
-        // console.log(searchTerms);
-
-        props.onSubmit(searchTerms.country);
-        console.log(searchTerms);
+        setSelection(searchForm.getValues());
     }
 
     return (
-        <Container size="110rem" style={{ paddingTop: 20 }}>
-            <Title order={4} size="40" mt="10" style={{ fontFamily: "Kayak Sans Bold" }}>
+        <Container size="110rem" style={{ paddingTop: 20, paddingBottom: 15 }}>
+            {/* <Title order={4} size="40" mt="10" style={{ fontFamily: "Kayak Sans Bold" }}>
                 Search the database
             </Title>
-            <Space h="lg" />
+            <Space h="lg" /> */}
             <form onSubmit={searchForm.onSubmit(handleSearch)}>
-                <Group>
+                <Stack maw="250" gap="xs">
                     <Select
+                        data={countries}
+                        onOptionSubmit={() => {searchForm.getInputProps('country')}}
                         label="Country"
                         placeholder="Type or use the dropdown to search"
-                        data={countries}
                         searchable
                         withAsterisk
                         selectFirstOptionOnChange
                         {...searchForm.getInputProps('country')}
                     />
                     <Select 
+                        data={populationRanges}
+                        onOptionSubmit={() => {searchForm.getInputProps('populatedWithin')}}
+                        maw="150"
                         label="Populated within"
                         placeholder="Select range"
-                        data={populationRanges}
+                        allowDeselect={false}                        
                         {...searchForm.getInputProps('populatedWithin')}
                     />
-                    <Button type="submit" variant="filled" color="#e68a00" mt="20">
+                    <Button type="submit" variant="filled" color="#e68a00" mt="5" maw="90">
                         Search
                     </Button>
-                </Group>
+                </Stack>
             </form>
 
 
@@ -98,6 +99,7 @@ export default function SelectSearch(props) {
 }
 
 SelectSearch.propTypes = {
-    onSubmit: PropTypes.func
+    selected: PropTypes.object,
+    setSelection: PropTypes.func
 }
 
