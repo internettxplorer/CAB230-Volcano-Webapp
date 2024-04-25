@@ -16,7 +16,7 @@ import logout from "../assets/logout.png";
  * 
  * @todo global styles for page margins
  */
-export default function Nav({loggedIn, setLoggedIn}) {
+export default function Nav({ loggedIn, setLoggedIn }) {
     const nav = useNavigate();
 
     // Renders sign in OR log out button based on session state
