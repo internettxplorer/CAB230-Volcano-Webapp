@@ -22,9 +22,9 @@ import {
 export default function SelectSearch(props) {
     const [ countries, setCountries ] = useState([]);
 
-    // refactor into its own hook? useCountries();
+    // Fetch and re-format country list
     useEffect(() => {
-        fetch("http://4.237.58.241:3000/countries") // change to ref env api url
+        fetch("http://4.237.58.241:3000/countries")
             .then(response => response.json())
             .then(res =>
                     res.map(country => {
@@ -75,12 +75,6 @@ export default function SelectSearch(props) {
                         label="Country"
                         placeholder="Type or use the dropdown to search"
                         data={countries}
-                        // onChange={(selected) => setSelection(selected.value)}
-                        // searchValue={selection}
-                        // onOptionSubmit={(selected) => {
-                        //     setSelection(selected)
-                        // }}
-                        // onSearchChange={setSelection}
                         searchable
                         withAsterisk
                         selectFirstOptionOnChange
@@ -90,17 +84,9 @@ export default function SelectSearch(props) {
                         label="Populated within"
                         placeholder="Select range"
                         data={populationRanges}
-                        // value={range}
-                        // onOptionSubmit={setRange}
                         {...searchForm.getInputProps('populatedWithin')}
                     />
-                    <Button
-                        type="submit"
-                        variant="filled"
-                        color="#e68a00"
-                        mt="20"
-                        // onClick={() => props.onSubmit(selection)}
-                    >
+                    <Button type="submit" variant="filled" color="#e68a00" mt="20">
                         Search
                     </Button>
                 </Group>
@@ -108,23 +94,6 @@ export default function SelectSearch(props) {
 
 
         </Container>
-        // <div
-        //     // style={{ display:"flex" }}
-        // >
-        //     <Select 
-        //         id="country-select"
-        //         onChange={(selected) => setSelection(selected.value)}
-        //         options={countries}
-        //         placeholder={"Start typing to search..."}
-        //     />
-        //     <button
-        //         id="search-button"
-        //         type="button"
-        //         onClick={() => props.onSubmit(selection)}
-        //     >
-        //         Search
-        //     </button>
-        // </div>
     )
 }
 
