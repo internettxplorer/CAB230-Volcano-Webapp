@@ -63,7 +63,7 @@ export default function Nav({ loggedIn, setLoggedIn }) {
     }
 
     return (
-        // header bar links
+        // header bar links/buttons
         <Container size="110rem" style={{paddingTop: 20}}>
             <Grid>
                 <Grid.Col span="content">

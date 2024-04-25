@@ -2,6 +2,7 @@
  * @desc Loads individual volcano info based on row click and user auth state
  * 
  * @todo error catching w/ UI potentially
+ * @todo refactor into helper function -> checkUserLoggedIn() return: bool
 */
 export function volcanoLoader(id) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL; // CHANGE -- maybe refactor to global var

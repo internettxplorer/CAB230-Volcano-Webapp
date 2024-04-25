@@ -1,4 +1,10 @@
-import { createTheme, MantineColorsTuple, Notification, NavLink } from "@mantine/core";
+import { 
+    createTheme, 
+    MantineColorsTuple, 
+    Notification, 
+    NavLink, 
+    Group 
+} from "@mantine/core";
 import '../assets/Bilthers/Bilthers.css';
 import '../assets/KayakSans/KayakSans.css';
 
@@ -44,10 +50,23 @@ export const theme = createTheme({
                     color: '#aeaeae',
                 }
             }
-        })
+        }),
+
+        // Group: Group.extend({
+        //     classNames: {
+        //         root: 'info-group'
+        //     },
+        //     styles: {
+        //         root: {
+        //             '--group-child-width': '50%'
+        //         }
+        //     }
+        // }),
+
+
+
 
     },
-    
 });
 
 // const themeOverride = createTheme({
