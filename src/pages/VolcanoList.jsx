@@ -12,10 +12,10 @@ import { useVolcanoTable } from "../hooks/useVolcanoTable";
 import SelectSearch from "../components/SelectSearch";
 
 import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-balham.css";
+import "ag-grid-community/styles/ag-theme-material.css";
 
 export default function VolcanoList() {
-    const [ search, setSearch ] = useState({ country: "", populatedWithin: "null" });
+    const [ search, setSearch ] = useState({ country: "null", populatedWithin: "null" });
     const { rowData, loading, error } = useVolcanoTable(search);
     const nav = useNavigate();
 
@@ -42,18 +42,18 @@ export default function VolcanoList() {
             </Title>
             <Space h="lg" />
             <SelectSearch selected={search} setSelection={setSearch} />
-            {/* <Box className="ag-theme-balham" style={{ height: "300px", width: "600px", marginLeft: "16px" }}>
+            <Box className="ag-theme-material-dark" style={{ height: "500px", width: "850px", marginLeft: "16px" }}>
                 <AgGridReact
                         columnDefs={columns}
                         rowData={rowData}
                         pagination={true}
-                        paginationPageSize={7}
+                        paginationPageSize={10}
                         onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
                 />
-            </Box> */}
-            <div
-                className="ag-theme-balham"
-                style={{ height: "300px", width: "600px", marginLeft: "16px", borderRadius: "20" }}
+            </Box>
+            {/* <div
+                className="ag-theme-material-dark"
+                style={{ height: "400px", width: "800px", marginLeft: "16px" }}
             >
                 <AgGridReact
                     columnDefs={columns}
@@ -62,7 +62,7 @@ export default function VolcanoList() {
                     paginationPageSize={7}
                     onRowClicked={(row) => nav(`/volcano/${row.data.id}`)}
                 />
-            </div>
+            </div> */}
         </Container>
     );
 }

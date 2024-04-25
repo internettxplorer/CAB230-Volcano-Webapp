@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { redirect } from "react-router-dom";
+// import { redirect } from "react-router-dom";
 
 /**
  * @desc Query API to populate volcano data table
@@ -20,18 +20,14 @@ function getVolcanoesByQuery(query) {
                 return response.json();
             })
     }
-    else if (query.country === "") {
-        return redirect('/');
-    }
-    else {
-        return fetch(`${VOLCANO_API_URL}/volcanoes?country=${query.country}`)
-        .then(response => {
-            if(!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-    }
+
+    return fetch(`${VOLCANO_API_URL}/volcanoes?country=${query.country}`)
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
 
 }
 

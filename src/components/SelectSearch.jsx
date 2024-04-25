@@ -5,8 +5,6 @@ import {
     Select,
     Container,
     Stack,
-    Title,
-    Space,
     Button,
 } from "@mantine/core";
 
@@ -51,21 +49,25 @@ export default function SelectSearch({ selected, setSelection }) {
             populatedWithin: "null"
         },
     
-        validate: {
-            country: (value) => (value === ("" || null) ? 'Country required' : null)
-        }
+        validate: (values) => ({
+            country:
+                values.country === ""
+                    ? 'Country required'
+                    : values.country === "null"
+                        ? 'Country required'
+                        : values.country === null
+                            ? 'Country required'
+                            : null,
+        }),
     });
 
     const handleSearch = () => {
         setSelection(searchForm.getValues());
+        console.log(selected);
     }
 
     return (
         <Container size="110rem" style={{ paddingTop: 20, paddingBottom: 15 }}>
-            {/* <Title order={4} size="40" mt="10" style={{ fontFamily: "Kayak Sans Bold" }}>
-                Search the database
-            </Title>
-            <Space h="lg" /> */}
             <form onSubmit={searchForm.onSubmit(handleSearch)}>
                 <Stack maw="250" gap="xs">
                     <Select
@@ -92,8 +94,6 @@ export default function SelectSearch({ selected, setSelection }) {
                     </Button>
                 </Stack>
             </form>
-
-
         </Container>
     )
 }
