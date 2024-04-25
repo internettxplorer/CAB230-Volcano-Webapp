@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Container, 
     Grid,
@@ -17,35 +17,37 @@ import logout from "../assets/logout.png";
  * @todo global styles for page margins
  */
 export default function Nav({loggedIn, setLoggedIn}) {
+    const nav = useNavigate();
 
     // Renders sign in OR log out button based on session state
     function loadSessionButton() {
         if (loggedIn) {
             return (
                 // log out button
-                <Link to="/">
-                    <Button
-                        onClick={() => {
-                            localStorage.removeItem("token");
-                            setLoggedIn(false);
-                        }}
-                        variant="outline"
-                        size="lg"
-                        color="orange"
-                        radius="md"
-                        leftSection={
-                            <img src={logout} alt="log-out-button" style={{ height: 28, width: 28 }} />
-                        }
-                    >
-                        Log out
-                    </Button>
-                </Link>
+                <Button
+                    onClick={() => {
+                        localStorage.removeItem("token");
+                        setLoggedIn(false);
+                        nav('/');
+
+                    }}
+                    variant="outline"
+                    size="lg"
+                    color="orange"
+                    radius="md"
+                    leftSection={
+                        <img src={logout} alt="log-out-button" style={{ height: 28, width: 28 }} />
+                    }
+                >
+                    Log out
+                </Button>
             );
         }
 
         return (
-            <Link to="/login">
+            // login button
             <Button
+                onClick={() => nav('/login')}
                 variant="outline"
                 size="lg"
                 color="orange"
@@ -57,34 +59,32 @@ export default function Nav({loggedIn, setLoggedIn}) {
             >
                 Sign in
             </Button>
-        </Link>
         );
     }
 
     return (
+        // header bar links
         <Container size="110rem" style={{paddingTop: 20}}>
             <Grid>
                 <Grid.Col span="content">
-                    <Link to ="/">
-                        <ActionIcon variant="transparent" aria-label="Home" size="65">
-                            <img src={volcano} style={{ height: 65, width: 65}} alt="home-button" />
-                        </ActionIcon>
-                    </Link>
+                    <ActionIcon onClick={() => nav('/')} variant="transparent" aria-label="Home" size="65">
+                        <img src={volcano} style={{ height: 65, width: 65}} alt="home-button" />
+                    </ActionIcon>
                 </Grid.Col>
 
                 <Grid.Col span={2}>
-                    <Link to="/list" style={{ textDecoration: 'none' }}>
-                        <NavLink
-                            label="Volcanoes"
-                            rightSection={
-                                <img
-                                    src={chevron_right}
-                                    style={{ height: 30, width: 30 }}
-                                />
-                            }
-                            classNames={{label: 'header-navlink-label'}}
-                        />
-                    </Link>
+                    <NavLink
+                        onClick={() => nav('/list')}
+                        label="Volcanoes"
+                        rightSection={
+                            <img
+                                src={chevron_right}
+                                style={{ height: 30, width: 30 }}
+                            />
+                        }
+                        classNames={{label: 'header-navlink-label'}}
+                        style={{textDecoration: 'none'}}
+                    />
                 </Grid.Col>
                 
                 <Grid.Col span="content" offset={8} style={{paddingTop: 18}}> 
