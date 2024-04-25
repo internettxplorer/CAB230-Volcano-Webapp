@@ -1,5 +1,6 @@
 import { useNavigate, useLoaderData } from "react-router-dom";
 import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
+import PropTypes from "prop-types";
 import {
     Container,
     Box,
@@ -24,8 +25,7 @@ import "../styles/volcano.css";
  * @todo refactor return into mantine format
  * @todo display pop graph dynamically based on user state
  */
-export default function Volcano() {
-    
+export default function Volcano({ loggedIn }) {
     const volcano = useLoaderData();
     const navigate = useNavigate();
 
@@ -34,9 +34,27 @@ export default function Volcano() {
     const latitude = parseFloat(volcano.latitude);
     const longitude = parseFloat(volcano.longitude);
 
+    function loadGraphElement() {
+        if (loggedIn) {
+            return (
+                <BarGraph />
+            );
+        }
+        return (
+            <Text size="xl">Log in to see population graph</Text>
+        );
+    }
+
     return (
         <Container size="110rem" style={{ paddingTop: 20, paddingBottom: 20 }}>
-            <Button onClick={() => navigate('/list')} variant="outline" size="md">Back to database</Button>
+            <Button 
+                onClick={() => navigate('/list')}
+                variant="outline"
+                size="md"
+            >
+                Back to database
+            </Button>
+
             <Grid>
                 <Grid.Col span={6}>
                     <Box>
@@ -67,9 +85,10 @@ export default function Volcano() {
                             </Box>
                         </Group>
                         <Space h="50px" />
-                        <BarGraph isLoggedIn={true} />
+                        {loadGraphElement()}
                     </Box>
                 </Grid.Col>
+
                 <Grid.Col span={6}>
                     <Box>
                         <Title order={3} size="45px" mt="45" mb="5" style={{ fontFamily: "Kayak Sans Bold" }}>
@@ -89,6 +108,7 @@ export default function Volcano() {
                     </Box>
                 </Grid.Col>
             </Grid>
+
         </Container>
         // <div>
         //     <div className="flex-container">
@@ -132,3 +152,6 @@ export default function Volcano() {
     );
 }
 
+Volcano.propTypes = {
+    loggedIn: PropTypes.bool
+}

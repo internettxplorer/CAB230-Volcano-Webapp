@@ -42,7 +42,7 @@ function App() {
         },
         {
           path: "/volcano/:id",
-          element: <Volcano />,
+          element: <Volcano loggedIn={loggedIn} />,
           loader: ({ params }) => {
             return volcanoLoader(params.id); // fetches volcano info at the given ID
           },
