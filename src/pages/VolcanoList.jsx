@@ -6,6 +6,7 @@ import {
     Box,
     Title,
     Space,
+    Loader
 } from "@mantine/core";
 
 import { useVolcanoTable } from "../hooks/useVolcanoTable";
@@ -27,7 +28,7 @@ export default function VolcanoList() {
     ];
 
     if (loading) {
-        return <p>Loading...</p>; // CHANGE to something nicer
+        return <Loader color="yellow" ml="180px" mt="80px" />
     }
 
     if (error) {
