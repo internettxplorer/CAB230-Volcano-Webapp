@@ -6,6 +6,7 @@ import { Container,
     NavLink,
     Button, 
 } from "@mantine/core";
+import { logOutSuccessNotif } from "../helpers/notifications";
 
 import volcano from "../assets/volcano.png";
 import chevron_right from "../assets/chevron_right.png";
@@ -27,6 +28,7 @@ export default function Nav({ loggedIn, setLoggedIn }) {
                     onClick={() => {
                         localStorage.removeItem("token");
                         setLoggedIn(false);
+                        logOutSuccessNotif();
                     }}
                     variant="outline"
                     size="lg"
@@ -84,7 +86,7 @@ export default function Nav({ loggedIn, setLoggedIn }) {
                 </Grid.Col>
                 
                 <Grid.Col span="content" offset={8} style={{paddingTop: 18}}> 
-                    {loadSessionButton()}
+                    { loadSessionButton() }
                 </Grid.Col>
             </Grid>
         </Container>

@@ -2,12 +2,8 @@ import { useState, useEffect } from "react";
 import { redirect } from "react-router-dom";
 
 /**
- * @desc Query API to populate volcano data table
- * 
- * @todo error catching
- * @todo conditional query (accommodating population search)
+ * @desc Query list of volcanoes in a given country (user selection), supports optional populationWithin input
  */
-
 function getVolcanoesByQuery(query) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
 
@@ -31,6 +27,9 @@ function getVolcanoesByQuery(query) {
 
 }
 
+/**
+ * @desc Returns rowData to populate volcano table
+ */
 export function useVolcanoTable(search) {
     const [ rowData, setRowData ] = useState([]);
     const [ loading, setLoading ] = useState(true);

@@ -15,16 +15,12 @@ import {
 import BarGraph from "../components/BarGraph";
 
 /**
- * @desc Displays information about a single volcano with accompanying map marker
- * 
- * @todo error handling
- * @todo map styling, sizing, etc.
+ * @desc Displays information about selected volcano with accompanying map marker
  */
 export default function Volcano({ loggedIn, setLoggedIn }) {
+    const MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
     const volcano = useLoaderData();
     const navigate = useNavigate();
-
-    const MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
     const latitude = parseFloat(volcano.latitude);
     const longitude = parseFloat(volcano.longitude);
@@ -46,6 +42,7 @@ export default function Volcano({ loggedIn, setLoggedIn }) {
 
     }
 
+    // Display information on volcano from API, as well as map with marker at its location
     return (
         <Container size="110rem" style={{ paddingTop: 20, paddingBottom: 20 }}>
             <Button 

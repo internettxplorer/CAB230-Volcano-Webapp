@@ -4,6 +4,9 @@ import {
     Title,
 } from "@mantine/core";
 
+/**
+ * @desc Simple landing page
+ */
 export default function Home() {
     return (
         <Container size="112rem" mt="180">
@@ -12,8 +15,6 @@ export default function Home() {
             <Title order={3} size="50" ml="70" mt="10" style={{ fontFamily: "Kayak Sans Bold, sans-serif" }}>
             Explore the world&apos;s volcanoes
             </Title>
-            
-            {/* <Text mt="80" ml="50">Learn about the world&apos;s volcanoes!</Text> */}
         </Container>
     );
 }

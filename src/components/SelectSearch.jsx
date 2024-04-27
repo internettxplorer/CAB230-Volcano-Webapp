@@ -10,7 +10,7 @@ import {
 } from "@mantine/core";
 
 /** 
- *  @desc Searchable dropdown list of countries using react-select
+ *  @desc Searchable select widget for volcanoes by country & population-within range using mantine-forms
  * */ 
 // eslint-disable-next-line no-unused-vars
 export default function SelectSearch({ selected, setSelection }) {

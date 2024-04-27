@@ -10,21 +10,15 @@ import { TextInput,
     Text, 
     Space,
 } from "@mantine/core";
+
 import {
     accountExistsNotif,
     accountCreatedNotif,
     miscErrorNotif,
 } from "../helpers/notifications";
 
-
-
-// import errors from './styles/errors.module.css';
-
 /**
- * @desc User registration form
- * 
- * @todo error handling for fetch request (add !response.ok)
- * @todo review if localStorage for user details is necessary
+ * @desc Registration form using mantine-forms, with input validation and UI notifications
  */
 export default function Register() {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;

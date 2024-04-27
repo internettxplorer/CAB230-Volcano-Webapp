@@ -16,10 +16,11 @@ import {
     wrongEmailNotif, 
     alreadyLoggedInNotif, 
     loginSuccessNotif, 
-    miscErrorNotif } from "../helpers/notifications";
+    miscErrorNotif 
+} from "../helpers/notifications";
 
 /**
- * @desc User login form
+ * @desc Login page using mantine-forms, with input validation and UI notifications
  */
 export default function Login({ setLoggedIn }) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
@@ -33,17 +34,21 @@ export default function Login({ setLoggedIn }) {
             password: ""
         },
 
+        // checks if email input contains '@', and if password is not empty;
+        // returns error message under textinput if validation fails
         validate: {
             email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
             password: (value) => (value.length < 1 ? 'Invalid password' : null)
         },
     });
 
+    // redirect user to previous page
     function handleLoginRedirect() {
         loginSuccessNotif();
         setTimeout(nav(-1), 500000);
     }
 
+    // post request to API with user-submitted form values
     const handleLogin = () => {
         const url = `${VOLCANO_API_URL}/user/login`;
         const user = loginForm.getValues(); // get login & pwd form input
@@ -62,7 +67,7 @@ export default function Login({ setLoggedIn }) {
         .then(res => {
             if (localStorage.getItem("token")) { alreadyLoggedInNotif(); } // Send notif if user already logged in
             else {
-                // If fetch successful (response with token), store token and send login success notification
+                // If fetch successful, store token, send login success notification and redirect
                 if (res.token) {
                     localStorage.setItem("token", res.token);
                     setLoggedIn(true); 
@@ -73,6 +78,7 @@ export default function Login({ setLoggedIn }) {
         .catch(() => { miscErrorNotif(); })
     };
 
+    // Display login form with buttons to submit or register account
     return (
         <Box maw={340} mx="auto">
             <Text size="xl">Log in</Text>

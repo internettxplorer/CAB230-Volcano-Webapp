@@ -1,5 +1,5 @@
 /**
- * Collection of notifications displayed in various parts of the website
+ * Collection of notifications displayed for login, register, logout functionality
  */
 import { notifications } from "@mantine/notifications";
 
@@ -53,6 +53,17 @@ export function accountCreatedNotif() {
         message: "You can log in now",
         color: "green",
         autoClose: 4500,
+        withCloseButton: false,
+        className: "notif-root-class"
+    });
+}
+
+export function logOutSuccessNotif() {
+    notifications.show({
+        title: "You are now logged out",
+        message: "See you later!",
+        color: "green",
+        autoClose: 2500,
         withCloseButton: false,
         className: "notif-root-class"
     });

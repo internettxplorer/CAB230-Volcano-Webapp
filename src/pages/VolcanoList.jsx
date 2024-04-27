@@ -15,6 +15,9 @@ import SelectSearch from "../components/SelectSearch";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
+/**
+ * @desc Volcano database page with searchable select widget and table displaying search results
+ */
 export default function VolcanoList() {
     const [ search, setSearch ] = useState({ country: "null", populatedWithin: "null" });
     const { rowData, loading, error } = useVolcanoTable(search);
@@ -32,7 +35,7 @@ export default function VolcanoList() {
     }
 
     if (error) {
-        return redirect('/fetch-error'); // CHANGE to notification
+        return redirect('/fetch-error');
     }
 
     return (

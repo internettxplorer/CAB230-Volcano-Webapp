@@ -1,10 +1,10 @@
+import { useLoaderData } from "react-router-dom";
+import PropTypes from 'prop-types';
 import { Box, Text } from "@mantine/core";
 import { BarChart } from "@mantine/charts";
-import PropTypes from 'prop-types';
-import { useLoaderData } from "react-router-dom";
 
 /**
- * @desc Display bar graph with population data (given if user logged in)
+ * @desc Display bar graph with population data (provided if user is logged in)
  */
 export default function BarGraph() {
     const volcano = useLoaderData();
