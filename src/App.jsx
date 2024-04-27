@@ -9,12 +9,13 @@ import Volcano from './pages/Volcano';
 import VolcanoList from "./pages/VolcanoList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+// import ErrorBoundary from './components/ErrorBoundary';
+import FetchError from './pages/FetchError';
 import { volcanoLoader } from './helpers/volcanoLoader';
 
 import '@mantine/core/styles.css';
 import '@mantine/charts/styles.css';
 import { theme } from "./styles/theme";
-// import './App.css';
 
 function App() {
   /**
@@ -42,7 +43,7 @@ function App() {
         },
         {
           path: "/volcano/:id",
-          element: <Volcano loggedIn={loggedIn} />,
+          element: <Volcano loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>,
           loader: ({ params }) => {
             return volcanoLoader(params.id); // fetches volcano info at the given ID
           },
@@ -58,6 +59,10 @@ function App() {
         {
           path: "/login",
           element: <Login setLoggedIn={setLoggedIn} />,
+        },
+        {
+          path: '/fetch-error',
+          element: <FetchError />,
         },
       ],
     },

@@ -39,6 +39,11 @@ export default function Login({ setLoggedIn }) {
         },
     });
 
+    function handleLoginRedirect() {
+        loginSuccessNotif();
+        setTimeout(nav(-1), 500000);
+    }
+
     const handleLogin = () => {
         const url = `${VOLCANO_API_URL}/user/login`;
         const user = loginForm.getValues(); // get login & pwd form input
@@ -61,8 +66,7 @@ export default function Login({ setLoggedIn }) {
                 if (res.token) {
                     localStorage.setItem("token", res.token);
                     setLoggedIn(true); 
-                    console.log(res); // DELETE
-                    loginSuccessNotif();
+                    handleLoginRedirect();
                 }
             }
         })
@@ -91,11 +95,13 @@ export default function Login({ setLoggedIn }) {
                 </Stack>
 
                 <Group justify="end" mt="md">
-                    <Button type="submit">Continue</Button>
+                    <Button type="submit" color="orange">
+                        Continue
+                    </Button>
                 </Group>
             </form>
             <Group justify="center" mt="md">
-                <Button variant="white" onClick={() => nav(`/register`)} >
+                <Button variant="outline" color="orange" onClick={() => nav(`/register`)} >
                     Create an account
                 </Button>
             </Group>

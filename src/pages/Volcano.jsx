@@ -20,7 +20,7 @@ import BarGraph from "../components/BarGraph";
  * @todo error handling
  * @todo map styling, sizing, etc.
  */
-export default function Volcano({ loggedIn }) {
+export default function Volcano({ loggedIn, setLoggedIn }) {
     const volcano = useLoaderData();
     const navigate = useNavigate();
 
@@ -29,15 +29,21 @@ export default function Volcano({ loggedIn }) {
     const latitude = parseFloat(volcano.latitude);
     const longitude = parseFloat(volcano.longitude);
 
+    // Render bar graph if user is logged in
     function loadGraphElement() {
         if (loggedIn) {
             return (
                 <BarGraph />
             );
         }
-        return (
-            <Text size="xl">Log in to see population graph</Text>
-        );
+        else {
+            setLoggedIn(false);
+            return (
+            
+                <Text size="xl">Log in to see population graph</Text>
+            );
+        }
+
     }
 
     return (
@@ -46,6 +52,7 @@ export default function Volcano({ loggedIn }) {
                 onClick={() => navigate('/list')}
                 variant="outline"
                 size="md"
+                color="orange"
             >
                 Back to database
             </Button>
@@ -53,7 +60,8 @@ export default function Volcano({ loggedIn }) {
             <Grid>
                 <Grid.Col span={6}>
                     <Box>
-                        <Title order={3} size="25" mt="30" mb="20" style={{ fontFamily: "Bilthers", textWrap: "pretty", lineHeight: 2.8 }}>
+                        <Title order={3} size="25" mt="30" mb="20" 
+                            style={{ fontFamily: "Bilthers", textWrap: "pretty", lineHeight: 2.8, color: "orange" }}>
                             {volcano.name}
                         </Title>
                         <Text c="dimmed" size="lg">Country</Text>
@@ -109,5 +117,6 @@ export default function Volcano({ loggedIn }) {
 }
 
 Volcano.propTypes = {
-    loggedIn: PropTypes.bool
+    loggedIn: PropTypes.bool,
+    setLoggedIn: PropTypes.func
 }

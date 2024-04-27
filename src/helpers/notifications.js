@@ -28,7 +28,7 @@ export function alreadyLoggedInNotif() {
 export function loginSuccessNotif() {
     notifications.show({
         title: "Welcome back to Volcaneer!",
-        message: "You are now logged in",
+        message: "You are now logged in. Redirecting to previous page...",
         color: "green",
         autoClose: 4500,
         withCloseButton: false,

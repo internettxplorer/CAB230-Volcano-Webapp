@@ -27,8 +27,6 @@ export default function Nav({ loggedIn, setLoggedIn }) {
                     onClick={() => {
                         localStorage.removeItem("token");
                         setLoggedIn(false);
-                        nav('/');
-
                     }}
                     variant="outline"
                     size="lg"

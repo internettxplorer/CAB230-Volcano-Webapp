@@ -1,33 +1,15 @@
 import { 
     createTheme, 
-    MantineColorsTuple, 
     Notification, 
     NavLink, 
-    Group 
 } from "@mantine/core";
 import '../assets/Bilthers/Bilthers.css';
 import '../assets/KayakSans/KayakSans.css';
 
-const colours: MantineColorsTuple = [
-    '#fff4e2',
-    '#ffe7cc',
-    '#ffcf9b',
-    '#ffb564',
-    '#fe9e38',
-    '#fe901b',
-    '#ff8909',
-    '#e47600',
-    '#ca6800',
-    '#b05800'
-  ];
-
 export const theme = createTheme({
     fontFamily: 'Kayak Sans Regular, sans-serif',
     defaultRadius: 'md',
-    // headings: { fontFamily: 'Bilthers, sans-serif'},
-    colors: {
-        colours,
-    },
+    headings: { fontFamily: 'Bilthers, sans-serif'},
     components: {
         Notification: Notification.extend({
             classNames: {
@@ -51,27 +33,5 @@ export const theme = createTheme({
                 }
             }
         }),
-
-        // Group: Group.extend({
-        //     classNames: {
-        //         root: 'info-group'
-        //     },
-        //     styles: {
-        //         root: {
-        //             '--group-child-width': '50%'
-        //         }
-        //     }
-        // }),
-
-
-
-
     },
 });
-
-// const themeOverride = createTheme({
-//     primaryColor: 'orange',
-//     defaultRadius: 0,
-// });
-
-// export const theme = mergeMantineTheme(DEFAULT_THEME, themeOverride);

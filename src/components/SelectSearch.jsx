@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { redirect } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { useForm } from "@mantine/form";
 import {
@@ -10,19 +11,22 @@ import {
 
 /** 
  *  @desc Searchable dropdown list of countries using react-select
- * 
- * @todo input validation
- * @todo error catching
- * @todo styling
- *  
  * */ 
+// eslint-disable-next-line no-unused-vars
 export default function SelectSearch({ selected, setSelection }) {
+    const url = import.meta.env.VITE_VOLCANO_API_URL;
     const [ countries, setCountries ] = useState([]);
+   
 
     // Fetch and re-format country list
     useEffect(() => {
-        fetch("http://4.237.58.241:3000/countries")
-            .then(response => response.json())
+        fetch(`${url}/countries`)
+            .then(response => {
+                if (!response.ok) {
+                    redirect('/fetch-error');
+                }
+                return response.json();
+            })
             .then(res =>
                     res.map(country => {
                         return {
@@ -50,6 +54,7 @@ export default function SelectSearch({ selected, setSelection }) {
         },
     
         validate: (values) => ({
+            // ensure user selects a country, show prompt if no input found
             country:
                 values.country === ""
                     ? 'Country required'
@@ -63,7 +68,6 @@ export default function SelectSearch({ selected, setSelection }) {
 
     const handleSearch = () => {
         setSelection(searchForm.getValues());
-        console.log(selected);
     }
 
     return (

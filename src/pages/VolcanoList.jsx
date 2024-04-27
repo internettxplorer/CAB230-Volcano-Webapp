@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import {
     Container,
@@ -32,7 +32,7 @@ export default function VolcanoList() {
     }
 
     if (error) {
-        return <p>Ya dun goofed: {error.message}</p>; // CHANGE to notification
+        return redirect('/fetch-error'); // CHANGE to notification
     }
 
     return (

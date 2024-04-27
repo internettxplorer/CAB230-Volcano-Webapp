@@ -88,11 +88,11 @@ export default function Register() {
                 </Stack>
 
                 <Group justify="end" mt="md">
-                    <Button type="submit">Sign me up!</Button>
+                    <Button type="submit" color="orange">Sign me up!</Button>
                 </Group>
             </form>
             <Group justify="center" mt="md">
-                    <Button variant="white" onClick={() => nav(`/login`)} >
+                    <Button variant="outline" color="orange" onClick={() => nav(`/login`)} >
                         Back to login
                     </Button>
             </Group>
