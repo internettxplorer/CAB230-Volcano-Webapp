@@ -9,7 +9,8 @@ import Volcano from './pages/Volcano';
 import VolcanoList from "./pages/VolcanoList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-// import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './components/ErrorBoundary';
+import NotFound from './pages/NotFound';
 import FetchError from './pages/FetchError';
 import { volcanoLoader } from './helpers/volcanoLoader';
 
@@ -17,14 +18,14 @@ import '@mantine/core/styles.css';
 import '@mantine/charts/styles.css';
 import { theme } from "./styles/theme";
 
-function App() {
+export default function App() {
   /**
    * Some code for the browser router derived from the below stackoverflow link. 
    * https://stackoverflow.com/questions/74168742/how-to-template-jsx-with-createbrowserrouter
    */
   const [loggedIn, setLoggedIn] = useState(false);
   
-  const Header = () => (
+  const Layout = () => (
     <>
       <header>
         <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
@@ -35,37 +36,46 @@ function App() {
 
   const routes = createBrowserRouter([
     {
-      element: <Header />,
+      element: <Layout />,
       children: [
         {
-          path: "/",
-          element: <Home />,
-        },
-        {
-          path: "/volcano/:id",
-          element: <Volcano loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>,
-          loader: ({ params }) => {
-            return volcanoLoader(params.id); // fetches volcano info at the given ID
-          },
-        },
-        {
-          path: "/list",
-          element: <VolcanoList />,
-        },
-        {
-          path: "/register",
-          element: <Register />,
-        },
-        {
-          path: "/login",
-          element: <Login setLoggedIn={setLoggedIn} />,
-        },
-        {
-          path: '/fetch-error',
-          element: <FetchError />,
-        },
-      ],
-    },
+          errorElement: <ErrorBoundary />,
+            children: [
+              {
+                path: "/",
+                element: <Home />,
+              },
+              {
+                path: "/volcano/:id",
+                element: <Volcano loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>,
+                loader: ({ params }) => {
+                  return volcanoLoader(params.id); // fetches volcano info at the given ID
+                },
+              },
+              {
+                path: "/list",
+                element: <VolcanoList />,
+              },
+              {
+                path: "/register",
+                element: <Register />,
+              },
+              {
+                path: "/login",
+                element: <Login setLoggedIn={setLoggedIn} />,
+              },
+              {
+                path: '/fetch-error',
+                element: <FetchError />,
+              },
+              {
+                path: '*',
+                element: <NotFound />,
+              }
+            ],
+        }
+      ],  
+    },  
   ]);
 
   return (
@@ -73,10 +83,6 @@ function App() {
       <Notifications />
       <RouterProvider router={routes} />
     </MantineProvider>
-    // <div className="App">
-    //   <RouterProvider router={routes} />
-    // </div>
   );
 }
 
-export default App
