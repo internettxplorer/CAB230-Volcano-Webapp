@@ -45,7 +45,7 @@ export default function VolcanoList() {
             </Title>
             <Space h="lg" />
             <SelectSearch selected={search} setSelection={setSearch} />
-            <Box className="ag-theme-material-dark" style={{ height: "500px", width: "850px", marginLeft: "16px" }}>
+            <Box className="ag-theme-material-dark" style={{ height: "500px", width: "820px", marginLeft: "16px" }}>
                 <AgGridReact
                         columnDefs={columns}
                         rowData={rowData}

@@ -16,7 +16,6 @@ import {
 export default function SelectSearch({ selected, setSelection }) {
     const url = import.meta.env.VITE_VOLCANO_API_URL;
     const [ countries, setCountries ] = useState([]);
-   
 
     // Fetch and re-format country list
     useEffect(() => {
