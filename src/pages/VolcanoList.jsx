@@ -16,7 +16,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 
 /**
- * @desc Volcano database page with searchable select widget and table displaying search results
+ *  Volcano database page with searchable select widget and table displaying search results
  */
 export default function VolcanoList() {
     // useState({ country: "null", populatedWithin: "null" });

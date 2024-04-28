@@ -6,7 +6,7 @@ import {
 } from "@mantine/core";
 
 /**
- * @desc Error page rendered when any general problems occur
+ *  Error page rendered when any general problems occur
  */
 export default function ErrorBoundary() {
     const navigate = useNavigate();

@@ -15,7 +15,7 @@ import {
 import BarGraph from "../components/BarGraph";
 
 /**
- * @desc Displays information about selected volcano with accompanying map marker
+ *  Displays information about selected volcano with accompanying map marker
  */
 export default function Volcano({ loggedIn, setLoggedIn }) {
     const MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;

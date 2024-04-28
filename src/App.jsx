@@ -18,6 +18,9 @@ import '@mantine/core/styles.css';
 import '@mantine/charts/styles.css';
 import { theme } from "./styles/theme";
 
+/**
+ * Declares the header, site routes, Mantine-related functionality for the whole app
+ */
 export default function App() {
   /**
    * Some code for the browser router derived from the below stackoverflow link. 

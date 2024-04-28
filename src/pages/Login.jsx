@@ -20,7 +20,7 @@ import {
 } from "../helpers/notifications";
 
 /**
- * @desc Login page using mantine-forms, with input validation and UI notifications
+ *  Login page using mantine-forms, with input validation and UI notifications
  */
 export default function Login({ setLoggedIn }) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;

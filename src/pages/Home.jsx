@@ -5,7 +5,7 @@ import {
 } from "@mantine/core";
 
 /**
- * @desc Simple landing page
+ *  Simple landing page
  */
 export default function Home() {
     return (

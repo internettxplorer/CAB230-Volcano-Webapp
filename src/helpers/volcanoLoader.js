@@ -2,7 +2,7 @@ import { redirect } from "react-router-dom";
 import { checkUserLoggedIn } from "./checkUserLoggedIn";
 
 /** 
- * @desc Loads individual volcano info based on row click and user auth state
+ *  Loads individual volcano info based on row click and user auth state
  * 
  * @todo error catching w/ UI potentially
  * @todo refactor into helper function -> checkUserLoggedIn() return: bool

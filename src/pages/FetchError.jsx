@@ -6,7 +6,7 @@ import {
 } from "@mantine/core";
 
 /**
- * @desc Error page shown when volcano page loader fails fetch request
+ *  Error page shown when volcano page loader fails fetch request
  */
 export default function FetchError() {
     const navigate = useNavigate();

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { redirect } from "react-router-dom";
 
 /**
- * @desc Query list of volcanoes in a given country (user selection), supports optional populationWithin input
+ * Query list of volcanoes in a given country (user selection), supports optional populationWithin input
  */
 function getVolcanoesByQuery(query) {
     // const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
@@ -34,10 +34,15 @@ function getVolcanoesByQuery(query) {
     // })
 }
 
+/**
+ * Provides a URL to query volcanos by user-selected country and (optional) populated-within range
+ * 
+ * @param {*} q - Object containing country and (optional) populated-within user search
+ * @returns {string} Returns URL for fetch request with search terms inserted
+ */
 function getUrl(q) {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;
 
-    // change to let??
     if (q.populatedWithin !== "null") {
         const url = `${VOLCANO_API_URL}/volcanoes?country=${q.country}&populatedWithin=${q.populatedWithin}`;
         return url;
@@ -49,7 +54,9 @@ function getUrl(q) {
 }
 
 /**
- * @desc Returns rowData to populate volcano table
+ *  Returns rowData to populate volcano table
+ * 
+ * @param {*} search - Object containing country and (optional) populated-within user search
  */
 export function useVolcanoTable(search) {
     const [ rowData, setRowData ] = useState([]);

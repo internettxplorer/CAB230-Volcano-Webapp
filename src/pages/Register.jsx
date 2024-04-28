@@ -18,7 +18,7 @@ import {
 } from "../helpers/notifications";
 
 /**
- * @desc Registration form using mantine-forms, with input validation and UI notifications
+ *  Registration form using mantine-forms, with input validation and UI notifications
  */
 export default function Register() {
     const VOLCANO_API_URL = import.meta.env.VITE_VOLCANO_API_URL;

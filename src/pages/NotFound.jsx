@@ -6,7 +6,7 @@ import {
 } from "@mantine/core";
 
 /**
- * @desc Error page rendered when user tries to access non-existent route
+ *  Error page rendered when user tries to access non-existent route
  */
 export default function NotFound() {
     const navigate = useNavigate();

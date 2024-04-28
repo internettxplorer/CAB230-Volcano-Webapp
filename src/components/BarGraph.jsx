@@ -4,7 +4,7 @@ import { Box, Text } from "@mantine/core";
 import { BarChart } from "@mantine/charts";
 
 /**
- * @desc Display bar graph with population data (provided if user is logged in)
+ *  Display bar graph with population data (provided if user is logged in)
  */
 export default function BarGraph() {
     const volcano = useLoaderData();
