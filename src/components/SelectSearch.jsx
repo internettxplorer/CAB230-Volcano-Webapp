@@ -34,7 +34,10 @@ export default function SelectSearch({ selected, setSelection }) {
                         };
                     })
             )
-            .then(countries => setCountries(countries));
+            .then(countries => {
+                setCountries(countries);
+                countries.unshift({value: "null", label: "Please select a country"});
+            });
     }, []);
 
     const populationRanges = [
@@ -48,20 +51,18 @@ export default function SelectSearch({ selected, setSelection }) {
     const searchForm = useForm({
         mode: 'uncontrolled',
         initialValues: {
-            country: "",
+            country: "null",
             populatedWithin: "null"
         },
     
         validate: (values) => ({
-            // ensure user selects a country, show prompt if no input found
+            // ensure user selects a country
             country:
-                values.country === ""
+                values.country === "null" // default value selected
                     ? 'Country required'
-                    : values.country === "null"
+                    : values.country === null // user deselected option
                         ? 'Country required'
-                        : values.country === null
-                            ? 'Country required'
-                            : null,
+                        : null,
         }),
     });
 
