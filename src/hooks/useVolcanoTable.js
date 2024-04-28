@@ -2,6 +2,33 @@ import { useState, useEffect } from "react";
 import { redirect } from "react-router-dom";
 
 /**
+ *  Returns rowData to populate volcano table
+ * 
+ * @param {*} search - Object containing country and (optional) populated-within user search
+ */
+export function useVolcanoTable(search) {
+    const [ rowData, setRowData ] = useState([]);
+    const [ loading, setLoading ] = useState(true);
+    const [ error, setError ] = useState(null);
+
+    useEffect(() => {
+        getVolcanoesByQuery(search)
+            .then(volcanoes => {
+                setRowData(volcanoes);
+            })
+            .catch(error => setError(error))
+            .finally(() => setLoading(false));
+        
+    }, [search]);
+
+    return {
+        rowData,
+        loading,
+        error
+    }
+}
+
+/**
  * Query list of volcanoes in a given country (user selection), supports optional populationWithin input
  */
 function getVolcanoesByQuery(query) {
@@ -50,33 +77,6 @@ function getUrl(q) {
     else {
         const url = `${VOLCANO_API_URL}/volcanoes?country=${q.country}`;
         return url;
-    }
-}
-
-/**
- *  Returns rowData to populate volcano table
- * 
- * @param {*} search - Object containing country and (optional) populated-within user search
- */
-export function useVolcanoTable(search) {
-    const [ rowData, setRowData ] = useState([]);
-    const [ loading, setLoading ] = useState(true);
-    const [ error, setError ] = useState(null);
-
-    useEffect(() => {
-        getVolcanoesByQuery(search)
-            .then(volcanoes => {
-                setRowData(volcanoes);
-            })
-            .catch(error => setError(error))
-            .finally(() => setLoading(false));
-        
-    }, [search]);
-
-    return {
-        rowData,
-        loading,
-        error
     }
 }
 
