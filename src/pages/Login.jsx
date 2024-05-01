@@ -89,6 +89,7 @@ export default function Login({ setLoggedIn }) {
                         withAsterisk
                         label="Email"
                         placeholder="your@email.com"
+                        title="Login email text input"
                         {...loginForm.getInputProps('email')}
                     />
                     <PasswordInput 
@@ -96,18 +97,21 @@ export default function Login({ setLoggedIn }) {
                         label="Password"
                         visible={visible}
                         onVisibilityChange={toggle}
+                        title="Login password text input"
                         {...loginForm.getInputProps('password')}
                     />
                 </Stack>
 
                 <Group justify="end" mt="md">
-                    <Button type="submit" color="orange">
+                    <Button type="submit" color="orange" title="Submit login button">
                         Continue
                     </Button>
                 </Group>
             </form>
             <Group justify="center" mt="md">
-                <Button variant="outline" color="orange" onClick={() => nav(`/register`)} >
+                <Button variant="outline" color="orange" title="Create an account button"
+                        onClick={() => nav(`/register`)} 
+                >
                     Create an account
                 </Button>
             </Group>

@@ -50,6 +50,7 @@ export default function Volcano({ loggedIn, setLoggedIn }) {
                 variant="outline"
                 size="md"
                 color="orange"
+                title="Back to volcano database button"
             >
                 Back to database
             </Button>
@@ -96,6 +97,7 @@ export default function Volcano({ loggedIn, setLoggedIn }) {
                         </Title>
                         <APIProvider apiKey={MAPS_API_KEY}>
                             <Map 
+                                title="Volcano location map"
                                 zoom={6} 
                                 center={{lat: latitude, lng: longitude}}
                                 gestureHandling={'none'} // disable interaction with the map

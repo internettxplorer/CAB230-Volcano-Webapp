@@ -28,6 +28,7 @@ export default function ErrorBoundary() {
                     variant="outline"
                     size="md"
                     color="orange"
+                    title="Back to home"
                 >
                     Back to home
                 </Button>

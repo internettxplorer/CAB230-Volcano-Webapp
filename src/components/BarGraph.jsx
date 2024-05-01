@@ -20,7 +20,7 @@ export default function BarGraph() {
             <Text size="lg" mb="md" ml="md">
                 Population density near this volcano
             </Text>
-            <BarChart 
+            <BarChart
                 h={300}
                 data={populationData}
                 dataKey="range"

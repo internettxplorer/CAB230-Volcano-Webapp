@@ -35,8 +35,9 @@ export default function Nav({ loggedIn, setLoggedIn }) {
                     color="orange"
                     radius="md"
                     leftSection={
-                        <img src={logout} alt="log-out-button" style={{ height: 28, width: 28 }} />
+                        <img src={logout} alt="Log out button" style={{ height: 28, width: 28 }} />
                     }
+                    title="Log out button"
                 >
                     Log out
                 </Button>
@@ -52,9 +53,10 @@ export default function Nav({ loggedIn, setLoggedIn }) {
                 color="orange"
                 radius="md"
                 leftSection={
-                    <img src={login} alt="sign-in-button" style={{ height: 28, width: 28 }} />
+                    <img src={login} alt="Sign in button" style={{ height: 28, width: 28 }} />
                 }
                 style={{ justifyContent: 'end', fontSize: 22 }}
+                title="Sign in button"
             >
                 Sign in
             </Button>
@@ -66,7 +68,7 @@ export default function Nav({ loggedIn, setLoggedIn }) {
             <Grid>
                 <Grid.Col span="content">
                     <ActionIcon onClick={() => nav('/')} variant="transparent" aria-label="Home" size="65">
-                        <img src={volcano} style={{ height: 65, width: 65}} alt="home-button" />
+                        <img src={volcano} style={{ height: 65, width: 65}} alt="Home button" />
                     </ActionIcon>
                 </Grid.Col>
 
@@ -74,10 +76,12 @@ export default function Nav({ loggedIn, setLoggedIn }) {
                     <NavLink
                         onClick={() => nav('/list')}
                         label="Volcanoes"
+                        title="Volcano database"
                         rightSection={
                             <img
                                 src={chevron_right}
                                 style={{ height: 30, width: 30 }}
+                                alt="Display icon"
                             />
                         }
                         classNames={{label: 'header-navlink-label'}}

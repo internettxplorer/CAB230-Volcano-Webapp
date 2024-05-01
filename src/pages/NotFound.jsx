@@ -27,6 +27,7 @@ export default function NotFound() {
                     variant="outline"
                     size="md"
                     color="orange"
+                    title="Back to home button"
                 >
                     Back to home
                 </Button>

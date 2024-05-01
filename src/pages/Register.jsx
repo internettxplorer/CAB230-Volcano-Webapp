@@ -70,11 +70,13 @@ export default function Register() {
                         withAsterisk
                         label="Email"
                         placeholder="your@email.com"   
+                        title="Register email text input"
                         {...registerForm.getInputProps('email')}
                     />
                     <PasswordInput 
                         withAsterisk
                         label="Password"
+                        title="Register password text input"
                         visible={visible}
                         onVisibilityChange={toggle}
                         {...registerForm.getInputProps('password')}
@@ -82,11 +84,15 @@ export default function Register() {
                 </Stack>
 
                 <Group justify="end" mt="md">
-                    <Button type="submit" color="orange">Sign me up!</Button>
+                    <Button type="submit" color="orange" title="Sign up button">
+                        Sign me up!
+                    </Button>
                 </Group>
             </form>
             <Group justify="center" mt="md">
-                    <Button variant="outline" color="orange" onClick={() => nav(`/login`)} >
+                    <Button variant="outline" color="orange" 
+                            title = "Back to login page button"
+                            onClick={() => nav(`/login`)} >
                         Back to login
                     </Button>
             </Group>

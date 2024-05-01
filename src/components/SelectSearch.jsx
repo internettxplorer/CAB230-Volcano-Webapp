@@ -76,9 +76,11 @@ export default function SelectSearch({ selected, setSelection }) {
                 <Stack maw="250" gap="xs">
                     <Select
                         data={countries}
-                        onOptionSubmit={() => {searchForm.getInputProps('country')}}
+                        onSearchChange={() => {
+                            searchForm.getInputProps('country');}}
                         label="Country"
                         placeholder="Type or use the dropdown to search"
+                        title="Select country text input"
                         searchable
                         withAsterisk
                         selectFirstOptionOnChange
@@ -90,10 +92,12 @@ export default function SelectSearch({ selected, setSelection }) {
                         maw="150"
                         label="Populated within"
                         placeholder="Select range"
+                        title="Select population range dropdown list"
                         allowDeselect={false}                        
                         {...searchForm.getInputProps('populatedWithin')}
                     />
-                    <Button type="submit" variant="filled" color="#e68a00" mt="5" maw="90">
+                    <Button type="submit" variant="filled" color="#e68a00" 
+                            mt="5" maw="90" title="Submit search button">
                         Search
                     </Button>
                 </Stack>
